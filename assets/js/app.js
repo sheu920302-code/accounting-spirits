@@ -4,7 +4,7 @@
   const CH = window.CHAPTERS || [];
   const SP = window.SPIRITS || [];
   const byId = Object.fromEntries(SP.map(s => [s.id, s]));
-  const EL_NAME = { asset: "資產", liability: "負債", equity: "權益", revenue: "收入", expense: "費用" };
+  const EL_NAME = { asset: "資產", liability: "負債", equity: "權益", revenue: "收益", expense: "費損" };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const img = (s, f) => `assets/spirits/${s.id}/${f}.webp`;
 

@@ -14,7 +14,8 @@
 - **要達成什麼**：看完一隻精靈，就記住一個會計要素的**定義、借貸方向、常見科目和一個考點**。
 - **怎麼長大**：依財務報表分「篇」，一篇一篇收錄新的精靈。
   - 第一篇：資產負債表篇（資產、負債、權益）✅
-  - 之後：損益表篇（收入、費用）、現金流量表篇、權益變動表篇……
+  - 第二篇：損益表篇（收益、費損）✅
+  - 之後：現金流量表篇、權益變動表篇……
 
 作者：國立臺北大學 會計碩二 許安琪。網站以 GitHub Pages 公開。
 
@@ -56,7 +57,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 2. **先寫內容稿給使用者確認**：在對話中列出第 6 節的所有欄位內容（名字、會計定義、借貸方向、主要科目、考點、小考題）。使用者說「OK」或「定稿」後才繼續。
 3. **準備圖片**：
    - 用第 8 節的「生圖提示詞模板」請使用者生成角色大圖（一張圖含主圖＋3 個表情）。
-   - 原始大圖存進 `reference/art-sources/<chapter-id>-sheet.png`。
+   - 原始大圖存進 `reference/art-sources/`：整篇一張圖命名為 `<chapter-id>-sheet.png`；一隻一張圖命名為 `<chapter-id>-<element>-sheet.png`（例：`income-statement-revenue-sheet.png`）。
    - 裁切出主圖與 3 張表情圖，轉成 `.webp`，放進 `assets/spirits/<slug>/`。
    - 裁切時去掉圖上 AI 生成的文字與框線，只留角色。
 4. **寫入資料**：在 `data/spirits.js` 的陣列中新增一筆，欄位依第 6 節規格，`no` 接續最大編號。
@@ -76,7 +77,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
    - `"published"`：至少收錄 1 隻精靈後才能改成這個值。
 3. 每一篇都要有一句「篇章恆等式」或「核心公式」放在 `formula`，例如：
    - 資產負債表篇：`資產 ＝ 負債 ＋ 權益`
-   - 損益表篇：`收入 － 費用 ＝ 本期淨利`
+   - 損益表篇：`收益 － 費損 ＝ 本期淨利`
 4. 篇章的精靈依序完成第 3 節流程。
 
 ---
@@ -88,7 +89,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 - 每篇的精靈之間要有關係，而且關係要對應會計觀念。例如資產負債表篇的三隻精靈，就是靠「資產＝負債＋權益」維持王國平衡。
 
 ### 命名
-- **中文名**：兩個字的海洋或夢幻意象，加上一種動物，共三個字。例：海晶鹿、貝綴兔、星籟喵。
+- **中文名**：兩到三個字的海洋或夢幻意象，加上一個角色稱呼（動物、幻獸或擬人稱呼），共三到四個字。例：海晶鹿、貝綴兔、星籟喵、盈流寶麟、勤耗客。
 - **英文 slug**：用英文意譯，全小寫、用連字號，例：`sea-crystal-deer`、`shell-bunny`、`star-chime-cat`。
 - **稱號**：「○○精靈」，○○是它代表的會計要素或科目，例：資產精靈。
 - 同一篇裡的動物不可重複。
@@ -114,7 +115,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 | `chapter` | 所屬篇章 id | `"balance-sheet"` |
 | `name` | 中文名 | `"海晶鹿"` |
 | `title` | 稱號 | `"資產精靈"` |
-| `element` | 會計要素：`asset`、`liability`、`equity`、`revenue`、`expense` | `"asset"` |
+| `element` | 會計要素：`asset`（資產）、`liability`（負債）、`equity`（權益）、`revenue`（收益）、`expense`（費損） | `"asset"` |
 | `attribute` / `attributeReason` | 屬性與理由 | `"水"`／`"資源像海水一樣流動…"` |
 | `height` / `weight` | 趣味設定 | `"1.0 m"`／`"28.5 kg"` |
 | `catchphrase` | 角色的一句台詞，要藏一個會計觀念 | |
@@ -135,7 +136,8 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 這是本專案最重要的部分，寫錯會誤導讀者：
 
 1. **用語**：依台灣金管會公告的 IFRS 會計項目用語，例如「不動產、廠房及設備」、「合約負債」、「透過損益按公允價值衡量之金融資產」。不用「固定資產」、「預收收入」這類舊稱，除非註明「舊稱」。
-2. **借貸方向**：要和會計恆等式一致。資產、費用的正常餘額在借方；負債、權益、收入在貸方。寫完要自己檢查一次。
+2. **借貸方向**：要和會計恆等式一致。資產、費損的正常餘額在借方；負債、權益、收益在貸方。寫完要自己檢查一次。
+   - 損益類一律用 IFRS 正式用語：**收益**（＝收入＋利益）、**費損**（＝費用＋損失），不用「收入／費用」代稱整個要素。
 3. **定義**：依 IFRS《財務報導之觀念架構》的意思改寫，不可自創定義。
 4. **科目歸類**：每個科目只能放在一組。有爭議的（例如預付款項、合約資產）以最常見的分類為準。
 5. **考點與小考題**：
@@ -162,8 +164,8 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 | 資產（藍） | `--asset` / `--asset-soft` | `#3F7FD0` / `#DDEEFF` |
 | 負債（粉） | `--liability` / `--liability-soft` | `#C9548C` / `#FCE3EF` |
 | 權益（金） | `--equity` / `--equity-soft` | `#B98A1E` / `#FFF1CC` |
-| 收入（綠，預留） | `--revenue` / `--revenue-soft` | `#2E9A78` / `#DDF5EC` |
-| 費用（橘，預留） | `--expense` / `--expense-soft` | `#D9733A` / `#FFE7D8` |
+| 收益（綠） | `--revenue` / `--revenue-soft` | `#2E9A78` / `#DDF5EC` |
+| 費損（橘） | `--expense` / `--expense-soft` | `#D9733A` / `#FFE7D8` |
 
 每個會計要素固定一個顏色，同一要素的精靈都用同一色系，讀者看顏色就知道是哪一類。
 
@@ -199,7 +201,7 @@ All characters are original designs. No text.
 - 所有出現在網址裡的檔名、資料夾名：英文小寫、連字號，不用中文和空白。
 - 精靈資料夾：`assets/spirits/<slug>/`；表情檔名：`happy.webp`、`rest.webp`、`thinking.webp`……
 - 篇章 id：`balance-sheet`、`income-statement`、`cash-flow`、`changes-in-equity`。
-- 原始大圖：`reference/art-sources/<chapter-id>-sheet.png`。
+- 原始大圖：`reference/art-sources/<chapter-id>-sheet.png`（整篇一張）或 `<chapter-id>-<element>-sheet.png`（一隻一張）。
 
 ---
 

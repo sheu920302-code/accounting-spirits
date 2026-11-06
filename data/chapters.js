@@ -13,12 +13,12 @@ window.CHAPTERS = [
   {
     id: "income-statement",
     title: "損益表篇",
-    subtitle: "賺進來的與花出去的",
+    subtitle: "價值的流入與付出",
     statement: "綜合損益表",
-    formula: "收入 － 費用 ＝ 本期淨利",
-    status: "coming",
-    spirits: [],
-    teaser: "收入精靈與費用精靈即將游進王國。"
+    formula: "收益 － 費損 ＝ 本期淨利",
+    status: "published",
+    spirits: ["fortune-stream-qilin", "diligent-cost-keeper"],
+    teaser: "這一期賺了多少、花了多少，最後替股東留下多少？"
   },
   {
     id: "cash-flow",
