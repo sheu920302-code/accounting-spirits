@@ -4,7 +4,7 @@
   const CH = window.CHAPTERS || [];
   const SP = window.SPIRITS || [];
   const byId = Object.fromEntries(SP.map(s => [s.id, s]));
-  const EL_NAME = { asset: "資產", liability: "負債", equity: "權益", revenue: "收益", expense: "費損" };
+  const EL_NAME = { asset: "資產", liability: "負債", equity: "權益", revenue: "收益", expense: "費損", operating: "營業", investing: "投資", financing: "籌資" };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const LEVEL = { basic: "🌱 入門", advanced: "🌊 進階", cpa: "👑 CPA" };
   const img = (s, f) => `assets/spirits/${s.id}/${f}.webp`;
@@ -72,7 +72,7 @@
           <h1>${esc(s.name)}</h1>
           <div class="title">${esc(s.title)}</div>
           <div class="chips">
-            <span class="chip">要素 <b>${EL_NAME[s.element]}</b></span>
+            <span class="chip">${s.normalBalance ? "要素" : "活動"} <b>${EL_NAME[s.element]}</b></span>
             <span class="chip">屬性 <b>${esc(s.attribute)}</b></span>
             <span class="chip">身高 ${esc(s.height)}</span>
             <span class="chip">體重 ${esc(s.weight)}</span>
@@ -87,14 +87,14 @@
         <div class="panel">
           <h2>會計定義</h2>
           <p>${esc(s.definition)}</p>
-          <div class="dc">
+          ${s.normalBalance ? `<div class="dc">
             <div><small>正常餘額</small><strong>${esc(s.normalBalance)}</strong></div>
             <div><small>增加記</small><strong>${esc(s.increaseSide)}</strong></div>
             <div><small>減少記</small><strong>${esc(s.decreaseSide)}</strong></div>
-          </div>
+          </div>` : ""}
         </div>
         <div class="panel acc">
-          <h2>主要科目</h2>
+          <h2>${s.normalBalance ? "主要科目" : "主要項目"}</h2>
           ${s.accounts.map(a => `<h3>${esc(a.group)}</h3><ul>${a.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`).join("")}
         </div>
         <div class="panel wide">

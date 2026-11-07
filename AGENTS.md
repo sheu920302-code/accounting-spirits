@@ -15,7 +15,8 @@
 - **怎麼長大**：依財務報表分「篇」，一篇一篇收錄新的精靈。
   - 第一篇：資產負債表篇（資產、負債、權益）✅
   - 第二篇：損益表篇（收益、費損）✅
-  - 之後：現金流量表篇、權益變動表篇……
+  - 第三篇：現金流量表篇（營業、投資、籌資活動）✅
+  - 之後：權益變動表篇……
 
 作者：國立臺北大學 會計碩二 許安琪。網站以 GitHub Pages 公開。
 
@@ -106,7 +107,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 
 ## 6. 資料欄位規格（`data/spirits.js`）
 
-每隻精靈是一個物件，**所有欄位都必填**，缺一不可：
+每隻精靈是一個物件，**所有欄位都必填**，缺一不可。唯一例外：現金流量表篇的活動精靈沒有借貸方向，`normalBalance`、`increaseSide`、`decreaseSide` 三個欄位**不填**，詳細頁會自動隱藏借貸區。
 
 | 欄位 | 說明 | 範例 |
 |---|---|---|
@@ -115,7 +116,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 | `chapter` | 所屬篇章 id | `"balance-sheet"` |
 | `name` | 中文名 | `"海晶鹿"` |
 | `title` | 稱號 | `"資產精靈"` |
-| `element` | 會計要素：`asset`（資產）、`liability`（負債）、`equity`（權益）、`revenue`（收益）、`expense`（費損） | `"asset"` |
+| `element` | 類型。會計要素：`asset`（資產）、`liability`（負債）、`equity`（權益）、`revenue`（收益）、`expense`（費損）；現金流量活動：`operating`（營業）、`investing`（投資）、`financing`（籌資） | `"asset"` |
 | `attribute` / `attributeReason` | 屬性與理由 | `"水"`／`"資源像海水一樣流動…"` |
 | `height` / `weight` | 趣味設定 | `"1.0 m"`／`"28.5 kg"` |
 | `catchphrase` | 角色的一句台詞，要藏一個會計觀念 | |
@@ -123,7 +124,7 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 | `definition` | 正式會計定義，依 IFRS 觀念架構的意思改寫成白話 | |
 | `normalBalance` | 正常餘額：`"借方"` 或 `"貸方"` | |
 | `increaseSide` / `decreaseSide` | 增加記哪方、減少記哪方 | |
-| `accounts` | 主要科目，分 2 組，每組 3～5 個 | `[{group:"流動資產", items:[…]}]` |
+| `accounts` | 主要科目，分 2 組，每組 3～5 個。活動精靈改為「現金流入」、「現金流出」兩組，列常見的收付項目 | `[{group:"流動資產", items:[…]}]` |
 | `examTip` | 一個會計師考試常考的觀念或陷阱 | |
 | `quizzes` | 三題四選一，依序為三種難度，每題含 `level`、`question`、`options`（4 個）、`answer`（0～3）、`explain` | `[{level:"basic", …}, {level:"advanced", …}, {level:"cpa", …}]` |
 | `expressions` | 3 個表情：`[{file:"happy", label:"開心"}]` | |
@@ -138,6 +139,8 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 1. **用語**：依台灣金管會公告的 IFRS 會計項目用語，例如「不動產、廠房及設備」、「合約負債」、「透過損益按公允價值衡量之金融資產」。不用「固定資產」、「預收收入」這類舊稱，除非註明「舊稱」。
 2. **借貸方向**：要和會計恆等式一致。資產、費損的正常餘額在借方；負債、權益、收益在貸方。寫完要自己檢查一次。
    - 損益類一律用 IFRS 正式用語：**收益**（＝收入＋利益）、**費損**（＝費用＋損失），不用「收入／費用」代稱整個要素。
+   - 現金流量活動沒有借貸方向，不要硬填；分類依現金流量表的規定（營業、投資、籌資）。
+   - 規定允許企業自行選擇分類的項目（例如利息、股利的收付），不要拿來出「唯一答案」的小考題。
 3. **定義**：依 IFRS《財務報導之觀念架構》的意思改寫，不可自創定義。
 4. **科目歸類**：每個科目只能放在一組。有爭議的（例如預付款項、合約資產）以最常見的分類為準。
 5. **考點與小考題**：
@@ -171,8 +174,11 @@ accounting-spirits/            ← repo 根目錄 = 網站根目錄
 | 權益（金） | `--equity` / `--equity-soft` | `#B98A1E` / `#FFF1CC` |
 | 收益（綠） | `--revenue` / `--revenue-soft` | `#2E9A78` / `#DDF5EC` |
 | 費損（橘） | `--expense` / `--expense-soft` | `#D9733A` / `#FFE7D8` |
+| 營業活動（青） | `--operating` / `--operating-soft` | `#1F8FA8` / `#DAF2F7` |
+| 投資活動（森綠） | `--investing` / `--investing-soft` | `#4F8A4B` / `#E3F2DF` |
+| 籌資活動（紫） | `--financing` / `--financing-soft` | `#7A5BC4` / `#EEE7FA` |
 
-每個會計要素固定一個顏色，同一要素的精靈都用同一色系，讀者看顏色就知道是哪一類。
+每個類型（會計要素或現金流量活動）固定一個顏色，讀者看顏色就知道是哪一類。新增類型時，要先經使用者同意，再同時加入 `style.css` 的色票、`app.js` 的類型名稱，以及本表。
 
 ### 字體（Google Fonts）
 - 標題：`Noto Serif TC`（像繪本封面的襯線字）

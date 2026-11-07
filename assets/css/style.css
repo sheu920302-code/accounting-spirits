@@ -7,6 +7,9 @@
   --equity:#B98A1E; --equity-soft:#FFF1CC;
   --revenue:#2E9A78; --revenue-soft:#DDF5EC;
   --expense:#D9733A; --expense-soft:#FFE7D8;
+  --operating:#1F8FA8; --operating-soft:#DAF2F7;
+  --investing:#4F8A4B; --investing-soft:#E3F2DF;
+  --financing:#7A5BC4; --financing-soft:#EEE7FA;
   --radius:24px; --shadow:0 10px 30px rgba(80,90,160,.12);
 }
 *{box-sizing:border-box}
@@ -88,6 +91,9 @@ section{padding:36px 0}
 .el-equity{--c:var(--equity);--cs:var(--equity-soft)}
 .el-revenue{--c:var(--revenue);--cs:var(--revenue-soft)}
 .el-expense{--c:var(--expense);--cs:var(--expense-soft)}
+.el-operating{--c:var(--operating);--cs:var(--operating-soft)}
+.el-investing{--c:var(--investing);--cs:var(--investing-soft)}
+.el-financing{--c:var(--financing);--cs:var(--financing-soft)}
 
 /* detail page */
 .back{display:inline-block;margin:6px 0 14px;color:var(--ink-soft);text-decoration:none;font-size:14px}

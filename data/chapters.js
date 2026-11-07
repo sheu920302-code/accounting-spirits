@@ -26,8 +26,8 @@ window.CHAPTERS = [
     subtitle: "王國裡錢的去向",
     statement: "現金流量表",
     formula: "營業 ＋ 投資 ＋ 籌資 ＝ 現金淨變動",
-    status: "coming",
-    spirits: [],
+    status: "published",
+    spirits: ["surge-tide-fox", "crystal-frontier-turtle", "wing-fund-dragon"],
     teaser: "三條洋流，決定現金從哪裡來、往哪裡去。"
   }
 ];
