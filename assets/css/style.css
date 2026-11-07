@@ -206,6 +206,30 @@ footer{text-align:center;color:var(--moon-soft);font-size:13px;padding:48px 16px
 footer p{margin:4px 0}
 footer a{color:var(--gold-hi)}
 
+/* ===== 加金 ===== */
+.site-head{border-bottom:0;background:linear-gradient(180deg,rgba(19,26,58,.9),rgba(19,26,58,.4))}
+.site-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold-foil)}
+.site-head{position:relative}
+.sec-title h2::after{content:"✦";display:block;font-size:16px;color:var(--gold-hi);margin:6px auto 0;width:220px;max-width:70%;
+  background:linear-gradient(90deg,transparent,var(--gold) 30%,transparent 30%,transparent 70%,var(--gold) 70%,transparent) center/100% 1px no-repeat;-webkit-text-fill-color:var(--gold-hi)}
+.chapter{border:2px solid transparent;background:linear-gradient(160deg,rgba(58,46,110,.95),rgba(19,26,58,.98)) padding-box,var(--gold-foil) border-box}
+.chapter h3{background:var(--gold-foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card h3{background:linear-gradient(100deg,#6E5018,#B08A34 40%,#7A5A1C 70%,#A27E2E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card .body{background:linear-gradient(180deg,transparent,rgba(216,178,90,.12))}
+.card .say{border-top:0;background:linear-gradient(90deg,transparent,var(--gold),transparent) top/80% 1px no-repeat}
+.card .go{color:var(--gold-lo)}
+.card::before{content:"";position:absolute;inset:5px;border:1px solid rgba(216,178,90,.55);border-radius:15px;pointer-events:none;z-index:1}
+.panel h2{padding-bottom:8px;background:linear-gradient(90deg,var(--gold),transparent) bottom left/60% 1px no-repeat}
+.panel::before,.panel::after{width:34px;height:34px;border-width:3px;border-color:var(--gold)}
+.chip{border-color:var(--gold);background:rgba(216,178,90,.12)}
+.quote{border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(19,26,58,.6),0 0 0 5px rgba(216,178,90,.5)}
+.dc div{border:1px solid var(--gold)}
+.faces img{padding:4px}
+.profile .title{color:var(--gold-hi)}
+footer{border-top:0;position:relative}
+footer::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:min(520px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+footer::after{content:"✦";position:absolute;left:50%;top:-12px;transform:translateX(-50%);color:var(--gold-hi);background:var(--abyss-3);padding:0 10px;font-size:16px}
+
 @media (max-width:720px){
   .profile{grid-template-columns:1fr}
   .panels{grid-template-columns:1fr}
