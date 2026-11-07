@@ -6,7 +6,7 @@
 <title>會計精靈圖鑑</title>
 <meta name="description" content="把會計要素變成海洋王國的精靈，一隻一隻收集，順便記住定義、借貸方向與會計師考點。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -19,23 +19,25 @@
 
 <main class="wrap">
   <div class="hero">
-    <span class="ribbon">✦ 海洋王國收藏冊 ✦</span>
-    <h1>會計精靈圖鑑</h1>
+    <div class="ribbon flourish">海洋王國收藏冊</div>
+    <h1 class="foil">會計精靈圖鑑</h1>
     <p class="lead">在海洋王國裡，每一個會計要素都是一隻精靈。收集牠們，順便記住定義、借貸方向和會計師考試的考點。目前已收錄 <b id="count">0</b> 隻。</p>
-    <div class="trio">
-      <a href="spirit.html?id=sea-crystal-deer"><img src="assets/spirits/sea-crystal-deer/main.webp" alt="資產精靈海晶鹿"><span>海晶鹿</span></a>
-      <a href="spirit.html?id=shell-bunny"><img src="assets/spirits/shell-bunny/main.webp" alt="負債精靈貝綴兔"><span>貝綴兔</span></a>
-      <a href="spirit.html?id=star-chime-cat"><img src="assets/spirits/star-chime-cat/main.webp" alt="權益精靈星籟喵"><span>星籟喵</span></a>
-    </div>
-    <div class="equation" aria-label="資產等於負債加權益">
-      <span class="pill asset">資產</span><span class="op">＝</span>
-      <span class="pill liability">負債</span><span class="op">＋</span>
-      <span class="pill equity">權益</span>
+    <div class="arch">
+      <div class="trio">
+        <a href="spirit.html?id=sea-crystal-deer"><div class="medal"><img src="assets/spirits/sea-crystal-deer/main.webp" alt="資產精靈海晶鹿"></div><span>海晶鹿</span></a>
+        <a href="spirit.html?id=shell-bunny"><div class="medal"><img src="assets/spirits/shell-bunny/main.webp" alt="負債精靈貝綴兔"></div><span>貝綴兔</span></a>
+        <a href="spirit.html?id=star-chime-cat"><div class="medal"><img src="assets/spirits/star-chime-cat/main.webp" alt="權益精靈星籟喵"></div><span>星籟喵</span></a>
+      </div>
+      <div class="equation" aria-label="資產等於負債加權益">
+        <span class="pill asset">資產</span><span class="op">＝</span>
+        <span class="pill liability">負債</span><span class="op">＋</span>
+        <span class="pill equity">權益</span>
+      </div>
     </div>
   </div>
 
   <section id="chapters">
-    <div class="sec-title"><h2>篇章</h2><p>依財務報表分篇，一篇一篇收錄新的精靈</p></div>
+    <div class="sec-title"><h2 class="foil">篇章</h2><p>依財務報表分篇，一篇一篇收錄新的精靈</p></div>
     <div class="chapters" id="chapter-list"></div>
   </section>
 

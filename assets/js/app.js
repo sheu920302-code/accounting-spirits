@@ -13,7 +13,7 @@
     return `<a class="card el-${s.element}" href="spirit.html?id=${s.id}">
       <div class="art"><img src="${img(s, "main")}" alt="${esc(s.alt)}" loading="lazy"></div>
       <div class="body">
-        <div class="meta"><span>No.${s.no}</span><span class="badge">${EL_NAME[s.element]}</span></div>
+        <div class="meta"><span class="num">No.${s.no}</span><span class="badge">${EL_NAME[s.element]}</span></div>
         <h3>${esc(s.name)}</h3>
         <div class="title">${esc(s.title)}・屬性 ${esc(s.attribute)}</div>
         <p class="say">「${esc(s.catchphrase)}」</p>
@@ -24,12 +24,14 @@
   function renderHome() {
     const total = SP.length;
     const chapEl = document.getElementById("chapter-list");
-    chapEl.innerHTML = CH.map(c => {
+    const VOL = ["卷一", "卷二", "卷三", "卷四", "卷五", "卷六"];
+    chapEl.innerHTML = CH.map((c, n) => {
       const on = c.status === "published";
       const thumbs = on
         ? c.spirits.map(id => byId[id]).filter(Boolean).map(s => `<img src="${img(s, "main")}" alt="${esc(s.name)}">`).join("")
         : `<span class="q">?</span><span class="q">?</span>`;
       return `<a class="chapter ${on ? "" : "coming"}" href="${on ? "#" + c.id : "#chapters"}">
+        <span class="vol">${VOL[n] || ""}</span>
         <span class="tag ${on ? "on" : "off"}">${on ? `已收錄 ${c.spirits.length} 隻` : "即將登場"}</span>
         <h3>${esc(c.title)}</h3>
         <div class="formula">${esc(c.formula)}</div>
@@ -40,7 +42,7 @@
     const secEl = document.getElementById("chapter-sections");
     secEl.innerHTML = CH.filter(c => c.status === "published").map(c => `
       <section id="${c.id}">
-        <div class="sec-title"><h2>${esc(c.title)}</h2><p>${esc(c.subtitle)}｜${esc(c.formula)}</p></div>
+        <div class="sec-title"><h2 class="foil">${esc(c.title)}</h2><p>${esc(c.subtitle)}｜${esc(c.formula)}</p></div>
         <div class="grid">${c.spirits.map(id => byId[id]).filter(Boolean).map(card).join("")}</div>
       </section>`).join("");
 
@@ -79,7 +81,7 @@
           </div>
           <div class="quote">💬「${esc(s.catchphrase)}」</div>
           <p>${esc(s.intro)}</p>
-          <p style="color:var(--ink-soft);font-size:14px">屬性的由來：${esc(s.attributeReason)}</p>
+          <p class="reason">屬性的由來：${esc(s.attributeReason)}</p>
         </div>
       </div>
 
