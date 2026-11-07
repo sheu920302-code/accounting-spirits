@@ -6,6 +6,7 @@
   const byId = Object.fromEntries(SP.map(s => [s.id, s]));
   const EL_NAME = { asset: "資產", liability: "負債", equity: "權益", revenue: "收益", expense: "費損" };
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const LEVEL = { basic: "🌱 入門", advanced: "🌊 進階", cpa: "👑 CPA" };
   const img = (s, f) => `assets/spirits/${s.id}/${f}.webp`;
 
   function card(s) {
@@ -101,10 +102,13 @@
           <div class="tip">📌 ${esc(s.examTip)}</div>
         </div>
         <div class="panel wide quiz">
-          <h2>精靈小考</h2>
-          <div class="q">${esc(s.quiz.question)}</div>
-          <div class="opts">${s.quiz.options.map((o, k) => `<button data-k="${k}">(${"ABCD"[k]}) ${esc(o)}</button>`).join("")}</div>
-          <div class="explain" id="explain"></div>
+          <h2>精靈小考 <span class="score" id="score">答對 0 / ${s.quizzes.length}</span></h2>
+          <div class="levels" role="tablist">${s.quizzes.map((q, n) => `<button role="tab" data-n="${n}" class="${n === 0 ? "on" : ""}">${LEVEL[q.level] || q.level}</button>`).join("")}</div>
+          ${s.quizzes.map((q, n) => `<div class="qbox" data-n="${n}"${n === 0 ? "" : " hidden"}>
+            <div class="q">${esc(q.question)}</div>
+            <div class="opts">${q.options.map((o, k) => `<button data-k="${k}">(${"ABCD"[k]}) ${esc(o)}</button>`).join("")}</div>
+            <div class="explain"></div>
+          </div>`).join("")}
         </div>
         <div class="panel wide">
           <h2>表情集</h2>
@@ -117,15 +121,27 @@
         ${next ? `<a href="spirit.html?id=${next.id}">No.${next.no} ${esc(next.name)} →</a>` : "<span></span>"}
       </div>`;
 
-    const btns = root.querySelectorAll(".opts button");
-    btns.forEach(b => b.addEventListener("click", () => {
-      const k = Number(b.dataset.k), ok = k === s.quiz.answer;
-      btns.forEach(x => { x.disabled = true; if (Number(x.dataset.k) === s.quiz.answer) x.classList.add("right"); });
-      if (!ok) b.classList.add("wrong");
-      const ex = document.getElementById("explain");
-      ex.innerHTML = `<b>${ok ? "答對了！🎉" : `答案是 (${"ABCD"[s.quiz.answer]})`}</b><br>${esc(s.quiz.explain)}`;
-      ex.classList.add("show");
+    let right = 0;
+    const tabs = root.querySelectorAll(".levels button");
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.toggle("on", x === t));
+      root.querySelectorAll(".qbox").forEach(b => { b.hidden = b.dataset.n !== t.dataset.n; });
     }));
+    root.querySelectorAll(".qbox").forEach(box => {
+      const q = s.quizzes[Number(box.dataset.n)];
+      const btns = box.querySelectorAll(".opts button");
+      btns.forEach(b => b.addEventListener("click", () => {
+        const k = Number(b.dataset.k), ok = k === q.answer;
+        btns.forEach(x => { x.disabled = true; if (Number(x.dataset.k) === q.answer) x.classList.add("right"); });
+        if (!ok) b.classList.add("wrong");
+        if (ok) right++;
+        tabs[Number(box.dataset.n)].classList.add(ok ? "ok" : "ng");
+        document.getElementById("score").textContent = `答對 ${right} / ${s.quizzes.length}`;
+        const ex = box.querySelector(".explain");
+        ex.innerHTML = `<b>${ok ? "答對了！🎉" : `答案是 (${"ABCD"[q.answer]})`}</b><br>${esc(q.explain)}`;
+        ex.classList.add("show");
+      }));
+    });
   }
 
   document.addEventListener("DOMContentLoaded", () => {

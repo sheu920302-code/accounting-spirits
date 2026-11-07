@@ -114,6 +114,12 @@ section{padding:36px 0}
 .acc ul{margin:0;padding-left:20px}
 .tip{background:var(--cs);border-radius:16px;padding:12px 14px}
 .quiz .q{font-weight:700;margin-bottom:10px}
+.quiz h2 .score{float:right;font-size:14px;font-weight:700;color:var(--ink-soft);margin-top:6px}
+.levels{display:flex;gap:8px;margin-bottom:14px;max-width:420px}
+.levels button{flex:1;white-space:nowrap;font:inherit;font-size:14px;font-weight:700;padding:6px 8px;border-radius:999px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.levels button.on{border-color:var(--c);background:var(--cs)}
+.levels button.ok::after{content:" ✓";color:#2E9A78}
+.levels button.ng::after{content:" ✗";color:#D25555}
 .opts{display:grid;gap:8px}
 .opts button{font:inherit;text-align:left;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
 .opts button:hover:not(:disabled){border-color:var(--c)}
